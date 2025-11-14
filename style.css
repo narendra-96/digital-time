@@ -1,0 +1,159 @@
+:root {
+    --clock-bg-color: #0a0a0a; /* deep black */
+}
+
+/* FULL PAGE */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    font-family: "Poppins", sans-serif;
+}
+
+/* MAIN CLOCK BOX */
+.clock-container {
+    width: 900px;
+    height: 250px;
+    background: var(--clock-bg-color);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+
+    border: 3px solid rgba(255,255,255,0.12);
+    box-shadow:
+        0 0 40px rgba(0,0,0,0.8),
+        inset 0 0 25px rgba(255,255,255,0.05);
+
+    animation: rgb-border 6s linear infinite;
+    transition: 0.4s ease;
+}
+
+/* Hover zoom effect */
+.clock-container:hover {
+    transform: scale(1.015);
+    box-shadow:
+        0 0 55px rgba(255,255,255,0.25),
+        inset 0 0 40px rgba(255,255,255,0.13);
+}
+
+/* LEFT PANEL (WEEKDAYS) */
+.left-panel ul {
+    list-style: none;
+    margin: 0 40px 0 0;
+    padding: 0;
+    font-size: 1.4rem;
+    color: #777;
+    line-height: 1.8rem;
+}
+
+.left-panel li {
+    transition: 0.3s;
+}
+
+.left-panel li.active {
+    color: #fff;
+    font-weight: bold;
+    animation: rgb-text 3s infinite linear;
+    transform: translateX(5px);
+}
+
+/* TIME PANEL MIDDLE */
+.time-panel {
+    display: flex;
+    align-items: center;
+}
+
+.time-display {
+    font-size: 7.5rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff9900,
+        #ffee00,
+        #33ff00,
+        #00eeff,
+        #0066ff,
+        #cc00ff,
+        #ff0088,
+        #ff0000
+    );
+    background-size: 600%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: rgb-text 6s linear infinite, glow-cycle 2s ease-in-out infinite alternate;
+    transition: .3s;
+}
+
+.time-display:hover {
+    transform: scale(1.03);
+}
+
+/* AM/PM TAG */
+.ampm {
+    font-size: 2.3rem;
+    margin-left: 10px;
+
+    background: linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta, red);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: rgb-text 4s infinite linear;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    margin-left: auto;
+    text-align: right;
+}
+
+/* TEMP & DATE GLOW */
+.temperature,
+.date {
+    font-size: 3rem;
+    font-weight: bold;
+
+    background: linear-gradient(90deg, red, yellow, lime, cyan, magenta, red);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: rgb-text 5s infinite linear, glow-cycle 2s infinite alternate;
+}
+
+/* LABELS UNDER DATE/TEMP */
+.labels {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    color: #aaa;
+}
+
+/* ✨ RGB COLOR-CYCLING ANIMATIONS */
+@keyframes rgb-text {
+    0% { background-position: 0%; }
+    100% { background-position: 400%; }
+}
+
+@keyframes rgb-border {
+    0% { border-color: #ff0000; }
+    20% { border-color: #ffee00; }
+    40% { border-color: #33ff00; }
+    60% { border-color: #00ccff; }
+    80% { border-color: #9900ff; }
+    100% { border-color: #ff0000; }
+}
+
+/* LED pulsing glow */
+@keyframes glow-cycle {
+    from { filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)); }
+    to   { filter: drop-shadow(0 0 18px rgba(255,255,255,0.8)); }
+}
